@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Cera Pro';
+  src: local('Arial'), url('/fonts/Cera-Pro-Black-Italic.ttf'),
+    url('/fonts/Cera-Pro-Black-Italic.otf'), url('/fonts/Cera-Pro-Black.otf'),
+    url('/fonts/Cera-Pro-Black.ttf'), url('/fonts/Cera-Pro-Bold.otf'),
+    url('/fonts/Cera-Pro-Bold.ttf'), url('/fonts/Cera-Pro-Light.otf'),
+    url('/fonts/Cera-Pro-Light.ttf'), url('/fonts/Cera-Pro-Medium.otf'),
+    url('/fonts/Cera-Pro-Medium.ttf'), url('/fonts/Cera-Pro-Regular-Italic.otf'),
+    url('/fonts/Cera-Pro-Regular-Italic.ttf');
+  font-display: swap;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Cera Pro';
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90%;
+  max-width: 1235px;
+  margin: 0 auto;
+}
