@@ -1,9 +1,10 @@
 import Hero from 'screens/hero';
 import Head from 'next/head';
 import Navigation from 'components/navigation';
-import AppUsage from 'screens/app-usage';
-import AboutUs from 'screens/about-us';
+import AppUsage from 'screens/app';
+import AboutUs from 'screens/about';
 import Contact from 'screens/contact';
+import Footer from 'components/footer';
 
 export default function Home() {
   return (
@@ -16,10 +17,11 @@ export default function Home() {
       <main>
         <Navigation />
         <Hero />
-        <AppUsage/>
+        <AppUsage />
         <AboutUs />
-        <Contact/>
+        <Contact /> 
       </main>
+      <Footer />
     </>
   );
 }
