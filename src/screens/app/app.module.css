@@ -1,6 +1,7 @@
 .app {
   background: var(--purple-bg);
   padding: 2rem 0;
+  overflow: hidden;
 }
 .app_container {
   width: 80%;
