@@ -55,3 +55,8 @@ ul {
 main {
   width: 100%;
 }
+
+.svg-icon{
+  width: 40px;
+  height: 40px;
+}
