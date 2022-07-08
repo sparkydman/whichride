@@ -1,6 +1,11 @@
 .nav_main {
-  padding: 1.2rem 0;
+    position: sticky;
+  padding-top: 1rem;
   overflow: hidden;
+    top: 0;
+    left: 0;
+    background: var(--white-bg);
+    z-index: 50;
 }
 .nav_container {
   width: 80%;
@@ -93,11 +98,6 @@
 
 @media (max-width: 450px) {
   .nav_main{
-    position: sticky;
-    top: 0;
-    left: 0;
-    background: var(--white-bg);
-    z-index: 50;
     padding: 0;
   }
   .padding-top{
