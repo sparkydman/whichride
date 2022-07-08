@@ -1,51 +1,30 @@
 import style from './hero.module.css';
-import { gsap } from 'gsap';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import useFromTo from 'animations/use-from-to';
 
 export default function Hero() {
   const ref = useRef(null);
-
-  useEffect(() => {
-    const elm = ref.current;
-    gsap.fromTo(
-      elm.querySelector('h1'),
-      {
-        y: 40,
-        opacity:0
-      },
-      {
-        y: 0,
-        opacity:1,
-        duration: 2,
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('p'),
-      {
-        y: 50,
-        opacity:0,
-        delay:1
-      },
-      {
-        y: 0,
-        opacity:1,
-        duration: 2,
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('img'),
-      {
-        y: 200,
-        opacity: 0,
-        delay: 1,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 3,
-      }
-    );
-  }, []);
+  
+  useFromTo({
+    ref,
+    targetElm: 'h1',
+    fromOptions: { y: 40, opacity: 0 },
+    toOptions: { y: 0, opacity: 1, duration: 2 },
+  });
+  
+  useFromTo({
+    ref,
+    targetElm: 'p',
+    fromOptions: { y: 50, opacity: 0, delay:1 },
+    toOptions: { y: 0, opacity: 1, duration: 2 },
+  });
+  
+  useFromTo({
+    ref,
+    targetElm: 'img',
+    fromOptions: { y: 200, opacity: 0, delay:1 },
+    toOptions: { y: 0, opacity: 1, duration: 3 },
+  });
 
   return (
     <div className={style.hero} id='#' ref={ref}>

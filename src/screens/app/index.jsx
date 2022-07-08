@@ -1,110 +1,57 @@
 import style from './app.module.css';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import useFromTo from 'animations/use-from-to';
+import useFromToTrigger from 'animations/use-from-to-trigger';
 
 export default function AppUsage() {
-  gsap.registerPlugin(ScrollTrigger)
   const ref = useRef(null)
 
-  useEffect(()=>{
-    const elm = ref.current;
+    useFromTo({
+      ref,
+      targetElm: 'h2',
+      fromOptions: { y: 40, opacity: 0 },
+      toOptions: { y: 0, opacity: 1, duration: 2 },
+    });
 
-    gsap.fromTo(
-       elm.querySelector('h2'),
-      {
-        y: 40,
-        opacity:0
-      },
-      {
-        y: 0,
-        opacity:1,
-        duration: 2,
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('p'),
-      {
-        y: 50,
-        opacity:0,
-      },
-      {
-        y: 0,
-        opacity:1,
-        duration: 2,
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('img'),
-      {
-        x: -100,
-        opacity:0,
-      },
-      {
-        x: 0,
-        opacity:1,
-        duration: 2,
-        scrollTrigger: {
-          trigger: elm.querySelector('p'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('li:nth-child(1)'),
-      {
-        x: 200,
-        opacity:0,
-      },
-      {
-        x: 0,
-        opacity:1,
-        duration: 2,
-        scrollTrigger: {
-          trigger: elm.querySelector('p'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('li:nth-child(2)'),
-      {
-        x: 200,
-        opacity: 0,
-        delay: 1,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 3,
-        scrollTrigger: {
-          trigger: elm.querySelector('li:nth-child(1)'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-    gsap.fromTo(
-      elm.querySelector('li:nth-child(3)'),
-      {
-        x: 200,
-        opacity:0,
-        delay: 2,
-      },
-      {
-        x: 0,
-        opacity:1,
-        duration: 4,
-        scrollTrigger: {
-          trigger: elm.querySelector('li:nth-child(2)'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-  },[])
+    useFromTo({
+      ref,
+      targetElm: 'p',
+      fromOptions: { y: 50, opacity: 0 },
+      toOptions: { y: 0, opacity: 1, duration: 2 },
+    });
+
+    useFromToTrigger({
+      ref,
+      targetElm: 'img',
+      triggerElm: 'p',
+      fromOptions: { x: -100, opacity: 0 },
+      toOptions: { x: 0, opacity: 1, duration: 2 },
+    });
+
+    useFromToTrigger({
+      ref,
+      targetElm: 'li:nth-child(1)',
+      triggerElm: 'p',
+      fromOptions: { x: 200, opacity: 0 },
+      toOptions: { x: 0, opacity: 1, duration: 2 },
+    });
+
+    useFromToTrigger({
+      ref,
+      targetElm: 'li:nth-child(2)',
+      triggerElm: 'li:nth-child(1)',
+      fromOptions: { x: 200, opacity: 0, delay: 1 },
+      toOptions: { x: 0, opacity: 1, duration: 3 },
+    });
+
+    useFromToTrigger({
+      ref,
+      targetElm: 'li:nth-child(3)',
+      triggerElm: 'li:nth-child(2)',
+      fromOptions: { x: 200, opacity: 0, delay: 2 },
+      toOptions: { x: 0, opacity: 1, duration: 4 },
+    });
+
   
   return (
     <div className={style.app} id='app' ref={ref}>

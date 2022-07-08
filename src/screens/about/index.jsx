@@ -1,64 +1,36 @@
 import style from './about.module.css';
-import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef } from 'react';
+import Image from 'next/image';;
+import {  useRef } from 'react';
+import useFromToTrigger from 'animations/use-from-to-trigger';
+import useFromTo from 'animations/use-from-to';
 
 export default function AboutUs() {
-    gsap.registerPlugin(ScrollTrigger)
-  const ref = useRef(null)
+  const ref = useRef(null);
 
-  useEffect(()=>{
-    const elm = ref.current;
+  useFromTo({
+    ref,
+    targetElm: 'h1',
+    fromOptions: { y: 40, opacity: 0 },
+    toOptions: { y: 0, opacity: 1, duration: 2 },
+  });
 
-    gsap.fromTo(
-       elm.querySelector('h1'),
-      {
-        y: 40,
-        opacity:0
-      },
-      {
-        y: 0,
-        opacity:1,
-        duration: 2,
-      }
-    );
-    gsap.fromTo(
-      elm.querySelectorAll('.left-side'),
-      {
-        x: -200,
-        opacity:0,
-      },
-      {
-        x: 0,
-        opacity:1,
-        duration: 2,
-        scrollTrigger: {
-          trigger: elm.querySelector('h1'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-    gsap.fromTo(
-      elm.querySelectorAll('.right-side'),
-      {
-        x: 200,
-        opacity: 0,
-        delay: 1,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 3,
-        scrollTrigger: {
-          trigger: elm.querySelector('h1'),
-          start: 'top center',
-          end: 'bottom center',
-        },
-      }
-    );
-  },[])
+  useFromToTrigger({
+    ref,
+    targetElm: '.left-side',
+    triggerElm: 'h1',
+    fromOptions: { x: -200, opacity: 0 },
+    toOptions: { x: 0, opacity: 1, duration: 2 },
+    isMultipleElms: true,
+  });
+
+  useFromToTrigger({
+    ref,
+    targetElm: '.right-side',
+    triggerElm: 'h1',
+    fromOptions: { x: 200, opacity: 0, delay: 1 },
+    toOptions: { x: 0, opacity: 1, duration: 3 },
+    isMultipleElms: true,
+  });
 
   return (
     <div className={style.about} id='about-us' ref={ref}>
@@ -66,7 +38,7 @@ export default function AboutUs() {
         <div></div>
         <div></div>
       </div>
-      <div className={style.about_container} id="container">
+      <div className={style.about_container} id='container'>
         <h1 className={style.about_heading}>Why Whichride</h1>
         <div className={style.about_list_div}>
           <ul className={style.about_list}>
